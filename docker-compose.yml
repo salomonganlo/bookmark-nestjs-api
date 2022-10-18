@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  db:
+  dev-db:
     container_name: mark_book_db
     image: postgres
     ports:
@@ -13,5 +13,17 @@ services:
     networks:
       - salomon
 
+  test-db:
+    image: postgres
+    ports:
+      - 5436:5432
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: mark
+      POSTGRES_DB: markbook
+    networks:
+      - salomon
+
 networks:
-    salomon: 
+  salomon:
